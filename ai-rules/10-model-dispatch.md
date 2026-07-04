@@ -43,7 +43,7 @@ CLAUDE.md 與 ai-rules/ 制度檔不計入讀檔門檻（按路由表讀，單�
 | 機械性、模式已定 | `low` |
 | 一般實作與研究 | `medium`（預設，不確定就用這個） |
 | 驗收、審查、除錯、任何「漏掉一條就白做」的任務 | `high` |
-| 升級到 opus 的卡關任務、對抗審查 | `high` 或 `xhigh` |
+| 升級到 opus 的卡關任務、對抗審查 | `high` 或 `xhigh`（極限情況 `max`，合法值全表見 05 號檔） |
 
 設定方式：用本 repo 預定義 agent（frontmatter 已設好），或 session 層級用 `/effort`。
 派給內建 agent type（無 effort 可設）時，在派工單內寫明「逐項檢查、不要抄捷徑、寧可慢」
