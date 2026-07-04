@@ -1,0 +1,2 @@
+# Fable5Temp
+這是透過網路流傳要讓Fable5建立開發制度的初始init專案
