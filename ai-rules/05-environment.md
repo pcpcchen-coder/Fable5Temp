@@ -1,6 +1,6 @@
 # 05 · 環境事實（已查證的，含重驗方法）
 
-> 最後更新：2026-07-04｜原因：初版，事實由官方文件查證（來源附於各節）
+> 最後更新：2026-07-04｜原因：初版（事實由官方文件查證，來源附於各節）；同日多代理複審修訂
 > 本檔的價值不在清單本身，而在「重驗方法」。清單一定會過期。
 > **任何依照本檔呼叫卻失敗（模型 ID 不存在、agent type 不存在、欄位無效），
 > 第一動作是照本檔的重驗方法更新本檔，再回頭做原任務。**
@@ -14,7 +14,8 @@
 | 高難度、升級目標 | Opus 4.8 | `claude-opus-4-8` | `opus` |
 
 查證來源：https://platform.claude.com/docs/en/about-claude/models/overview（2026-07-04）
-重驗方法：問 claude-code-guide agent，或 WebFetch 上述 URL；不要憑記憶寫 model ID。
+重驗方法：派 claude-code-guide agent（不在清單則 general-purpose）查上述 URL，
+只收更新後的表格列與查證日期；主對話不自行 WebFetch（紅線 1）。不要憑記憶寫 model ID。
 注意：ID 格式不一致（Haiku 帶日期尾碼、Sonnet/Opus 不帶）是官方現狀，照表複製即可，
 不要自行補上或刪掉日期尾碼。
 
@@ -26,12 +27,12 @@
   - session 層級：`/effort` 指令、`--effort` 旗標、環境變數 `CLAUDE_CODE_EFFORT_LEVEL`、
     settings.json 的 `effortLevel` 欄位
   - subagent 定義：`.claude/agents/*.md` frontmatter 的 `effort` 欄位
-- 查證來源：https://code.claude.com/docs/en/model-config.md（2026-07-04）
+- 查證來源：https://code.claude.com/docs/en/model-config.md（2026-07-04）。重驗方法同第 1 節。
 
 ## 3. 自訂 subagent（.claude/agents/*.md）
 
 frontmatter 合法欄位（完整清單）：`name`（必填）、`description`（必填）、`tools`、
-`disallowedTools`、`model`（sonnet/opus/haiku/完整 ID/inherit，預設 inherit）、`effort`、
+`disallowedTools`、`model`（sonnet/opus/haiku/fable/完整 ID/inherit，預設 inherit）、`effort`、
 `permissionMode`、`maxTurns`、`skills`、`mcpServers`、`hooks`、`memory`、`background`、
 `isolation`、`color`、`initialPrompt`。
 查證來源：https://code.claude.com/docs/en/sub-agents.md（2026-07-04）
@@ -61,6 +62,11 @@ frontmatter 合法欄位（完整清單）：`name`（必填）、`description`�
 
 - 容器短命：閒置就回收。**沒 commit + push 的東西等於沒發生。**
 - push 用 `git push -u origin <分支>`；網路錯誤重試最多 4 次（2s/4s/8s/16s 退避）。
+- push 被拒（non-fast-forward）＝遠端有別的 session 的工作，不是網路錯誤、不計入重試
+  次數：先 `git pull --rebase` 再 push。rebase 衝突時，兩邊都要保留的內容（如 LESSONS.md
+  的追加條目）手動合併；拿不準怎麼合 → 停下照 `20-judgment.md` 第 3 節必問處理。
+  `git push --force` 與 `--force-with-lease` 一律必問，沒有例外——它會抹掉別的 session
+  已 push 的工作，且容器短命，被抹掉的 commit 無處可救。
 - 對外 HTTPS 走 agent proxy；TLS 或 403/407 錯誤看 `/root/.ccr/README.md`，
   不要關 TLS 驗證、不要 unset HTTPS_PROXY。
 - 暫存檔用系統提示指定的 scratchpad 目錄，不用 `/tmp`。
