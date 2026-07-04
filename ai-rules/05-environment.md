@@ -15,6 +15,8 @@
 
 查證來源：https://platform.claude.com/docs/en/about-claude/models/overview（2026-07-04）
 重驗方法：問 claude-code-guide agent，或 WebFetch 上述 URL；不要憑記憶寫 model ID。
+注意：ID 格式不一致（Haiku 帶日期尾碼、Sonnet/Opus 不帶）是官方現狀，照表複製即可，
+不要自行補上或刪掉日期尾碼。
 
 ## 2. Reasoning effort
 
@@ -51,6 +53,9 @@ frontmatter 合法欄位（完整清單）：`name`（必填）、`description`�
 - MCP servers（本 session 觀測）：`github`（遠端環境沒有 `gh` CLI，GitHub 操作一律用它）、
   `Claude_Code_Remote`（排程、send_later、觸發器）、Gmail / Google Calendar / Google Drive /
   Notion。重驗：用 ToolSearch 搜關鍵字，搜不到才算不可用。
+- **主對話與 subagent 的工具清單不同**（已實測：主對話有的任務清單、提問工具，
+  subagent 內查不到）。工具是否存在，以「當下這個 context 實際看到的工具清單」為準，
+  不以本檔、其他 session 的觀測、或訓練記憶為準。
 
 ## 6. 遠端執行環境的硬約束
 

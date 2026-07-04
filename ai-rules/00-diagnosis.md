@@ -25,10 +25,10 @@ context 快速膨脹 → 觸發自動摘要 → 任務的驗收條件和早期�
    - 預期要讀超過 2 個檔案，或單一檔案超過 200 行
    - 搜尋一次 Grep 沒有直接命中，需要換 pattern 再找
    - 任何網頁查詢或文件研究
-   - 超過 5 個檔案的批次修改
+   - 超過 2 個檔案的修改（超過 5 個檔案時，另須先 1 檔試點，見第 3 名修法）
 2. 自己 Read 時一律指定行號範圍；同一個檔案在同一 session 不讀第二次——
    第一次讀完就把結論（含 file:line）記進工作筆記或 todo，之後引用筆記。
-3. 超過 3 步的任務，動手前先建 checklist（用 TaskCreate 工具，或寫一個
+3. 超過 3 步的任務，動手前先建 checklist（用環境的任務清單工具；沒有就寫一個
    scratchpad 的 WORKLOG 檔）。context 被摘要後，以 checklist 回錨，不憑記憶。
 
 ---
@@ -42,10 +42,10 @@ context 快速膨脹 → 觸發自動摘要 → 任務的驗收條件和早期�
 
 **修法**：
 1. 派工三件套強制：目標與動機、可機械判定的驗收條件、固定回報格式。缺一不派。
-   （模板見 `30-delegation-templates.md`，缺三件套的派工單範例也在那裡。）
+   （模板見 `30-delegation-templates.md`；缺三件套的反例見 `10-model-dispatch.md` 第 4 節。）
 2. 驗證不自驗：實作者不驗收自己的產出。驗收派 fresh-context agent，
    只給驗收條件與產出位置、不給實作過程。檔案用 read-back，程式碼用測試或實跑，
-   高風險判斷加第二意見。（流程見 `10-model-dispatch.md` 第 6 節。）
+   高風險判斷加第二意見。（流程見 `10-model-dispatch.md` 第 9 節。）
 3. 「完成」的定義收斂成一條可查核的 rubric（見 `20-judgment.md` 第 2 節）：
    驗收條件逐條有證據 + fresh-context 驗證 PASS + 已 commit push。三者缺一都不算完成。
 
